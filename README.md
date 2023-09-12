@@ -4,7 +4,7 @@ NPM         : 2206083325
 
 Kelas       : PBP E
 
-Adaptable   : [Support Inventory](https://support-inventory.adaptable.app/main/)
+Adaptable   : [Support Inventory](https://support.adaptable.app/main/)
 
 # Checklist Tugas
 
