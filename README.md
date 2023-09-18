@@ -6,12 +6,18 @@ Kelas       : PBP E
 
 Adaptable   : [Support Inventory](https://support.adaptable.app/main/)
 
-# Checklist Tugas
+[Tugas 2](#tugas-2)
+
+[Tugas 3](#tugas-3)
+
+# Tugas 2
+
+## Checklist Tugas
 
 *Checklist* untuk tugas ini adalah sebagai berikut.
 
-## A. Jelaskan bagaimana cara kamu mengimplementasikan *checklist* di atas secara *step-by-step*.
-### 1. Membuat sebuah proyek Django baru.
+### A. Jelaskan bagaimana cara kamu mengimplementasikan *checklist* di atas secara *step-by-step*.
+#### 1. Membuat sebuah proyek Django baru.
 1. Pastikan bahwa kita sudah *download* aplikasi Django terlebih dahulu. Kalian bisa melakukan *download* pada link berikut [Django](https://www.djangoproject.com/).
 2. Buatlah direktori utama (folder utama) yang akan kita gunakan untuk membuat sebuah proyek Django baru.
 3. Kita buka *command prompt* untuk Windows atau *terminal shell* untuk Unix pada direktori utama tersebut.
@@ -68,7 +74,7 @@ Adaptable   : [Support Inventory](https://support.adaptable.app/main/)
     ```
     deactivate
     ```
-### 2. Membuat aplikasi dengan nama `main` pada proyek tersebut.
+#### 2. Membuat aplikasi dengan nama `main` pada proyek tersebut.
 1. Buka kembali *command prompt* atau *terminal shell* pada direktori utama proyek Django. Lalu aktifkan *virtual environment* tersebut dengan perintah.
 
     ```
@@ -95,7 +101,7 @@ Adaptable   : [Support Inventory](https://support.adaptable.app/main/)
         ...
     ]
     ```
-### 3. Melakukan *routing* pada proyek agar dapat menjalankan aplikasi `main`.
+#### 3. Melakukan *routing* pada proyek agar dapat menjalankan aplikasi `main`.
 1. Untuk melakukan *routing*, yang pertama kita lakukan adalah membuat berkas baru dengan nama `urls.py` di dalam direktori `main`.
 2. Isi berkas tersebut dengan kode berikut.
     ```java
@@ -109,7 +115,7 @@ Adaptable   : [Support Inventory](https://support.adaptable.app/main/)
     ]
     ```
     Tujuan dari pembuatan berkas ini adalah untuk bertanggung jawab dalam mengatur rute URL yang terkait dengan aplikasi `main`.
-### 4. Membuat model pada aplikasi `main` dengan nama Item dan memiliki atribut wajib sebagai berikut.
+#### 4. Membuat model pada aplikasi `main` dengan nama Item dan memiliki atribut wajib sebagai berikut.
 > `name` sebagai nama item dengan tipe CharField.
 
 > `amount` sebagai jumlah item dengan tipe IntegerField.
@@ -138,7 +144,7 @@ Adaptable   : [Support Inventory](https://support.adaptable.app/main/)
     ```
     python manage.py migrate
     ```
-### 5. Membuat sebuah fungsi pada views.py untuk dikembalikan ke dalam sebuah template HTML yang menampilkan nama aplikasi serta nama dan kelas kamu.
+#### 5. Membuat sebuah fungsi pada views.py untuk dikembalikan ke dalam sebuah template HTML yang menampilkan nama aplikasi serta nama dan kelas kamu.
 1. Untuk membuat sebuah fungsi, yang pertama kita lakukan adalah membuka berkas `views.py` pada direktori aplikasi `main`.
 2. Tambahkan kode berikut pada baris *import*.
     ```java
@@ -171,7 +177,7 @@ Adaptable   : [Support Inventory](https://support.adaptable.app/main/)
     ...
     ```
     Penjelasan : Sintaks Django `{{ app }}`, `{{ name }}` dan `{{ class }}` merupakan tempat untuk menampilkan nilai yang telah didefinisikan dalam `context` yang ada pada berkas `views.py`.
-### 6. Membuat sebuah routing pada urls.py aplikasi main untuk memetakan fungsi yang telah dibuat pada views.py.
+#### 6. Membuat sebuah routing pada urls.py aplikasi main untuk memetakan fungsi yang telah dibuat pada views.py.
 1. Sama seperti poin pada nomor 3. Yang pertama kita lakukan untuk melakukan *routing* adalah membuat berkas baru dengan nama `urls.py` di dalam direktori `main`.
 2. Isi berkas tersebut dengan kode berikut.
     ```java
@@ -209,7 +215,7 @@ Adaptable   : [Support Inventory](https://support.adaptable.app/main/)
     python manage.py runserver
     ```
 7. Untuk melihat hasil proyek django yang berhasil kita buat, kita dapat melihatnya pada peramban web berikut [http://localhost:8000](http://localhost:8000).
-### 7. Melakukan deployment ke Adaptable terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet.
+#### 7. Melakukan deployment ke Adaptable terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet.
 1. Buatlah akun [Adaptable.io](https://adaptable.io/) dengan menggunakan akun [GitHub](https://github.com/) yang digunakan sebagai tempat untuk menyimpan repositori proyek aplikasi Djago kalian.
 2. Jika sudah membuat akun dan *login* pada Adaptable, tekan tombol `NEW APP`. Pilih `Connect an Existing Repository`.
 3. Pilihlah repositori proyek aplikasi Djago kalian sebagai basis aplikasi yang akan di-*deploy*. Pilih *branch* yang ingin dijadikan sebagai *deployment branch*.
@@ -219,10 +225,10 @@ Adaptable   : [Support Inventory](https://support.adaptable.app/main/)
 7. Setelah itu, masukkan nama aplikasi yang kalian buat dan nama ini akan menjadi *domain* situs web aplikasi kalian.
 8. Terakhir, centang bagian `HTTP Listener on PORT` dan lakukan `Deploy App` untuk memulai proses *deployment* aplikasi kalian. Tunggu sampai semua *`Deployment Status`* berwarna hijau yang menandakan keberhasilan pembuatan aplikasi kalian pada Adapatable.
 
-## B. Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html.
+### B. Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html.
 ![Alt text](DjangoWorkFlow.png)
 
-### PENJELASAN
+#### PENJELASAN
 1. *Workflow* dimulai dari *user* yang meminta *request* kepada Django. Django akan menerima request tersebut dengan menggunakan URL (`url.py`). 
 
 2. Setelah itu, URL akan memanggil VIEWS (`views.py`) yang akan mengatur berbagai macam bentuk interaksi seperti meminta, mengelola dan menyajikan data yang nanti akan diolah oleh MODELS (`model.py`) yang dilanjutkan ke dalam *APP Database*. Data yang didapatkan dari MODELS tersebut akan dikirim oleh VIEWS ke TEMPLATE (`main.html`) dan akan ditampilkan dalam bentuk berkas HTML.
@@ -231,7 +237,7 @@ Adaptable   : [Support Inventory](https://support.adaptable.app/main/)
 
 4. Setelah semua selesai diolah, data tersebut akan ditampilkan dalam bentuk *rendered web page* kepada *user*.
 
-## C. Jelaskan mengapa kita menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
+### C. Jelaskan mengapa kita menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
 1. Tujuan kita menggunakan *virtual enviroment* :
 
 > Menciptakan tempat khusus agar proyek perangkat lunak yang kita kerjakan dapat bekerja dengan lebih teratur dan lebih aman. 
@@ -244,11 +250,11 @@ Adaptable   : [Support Inventory](https://support.adaptable.app/main/)
 
     Oleh karena itu, kita disarankan untuk menggunakan *virtual environment* dalam membuat aplikasi web berbasis Django agar kita dapat menggunakan berbagai versi Django dalam perangkat kita untuk menciptakan berbagai jenis proyek baru berbasis Django. Selain itu, agar menambah keamanan dalam membuat proyek tanpa perlu memperhatikan dampak pada sistem operasi utama pada perangkat kita.
 
-## D. Jelaskan apakah itu MVC, MVT, MVVM dan perbedaan dari ketiganya.
+### D. Jelaskan apakah itu MVC, MVT, MVVM dan perbedaan dari ketiganya.
 
 MVC (Model-View-Controller), MVT (Model-View-Template), dan MVVM (Model-View-ViewModel) adalah sebuah pola arsitektur dalam membuat sebuah aplikasi dengan cara memisahkan kode menjadi tiga bagian yang akan digunakan dalam pengembangan perangkat lunak (membuat aplikasi berbasis web). Tujuan utama dari memisahkan kode menjadi tiga bagian ini adalah untuk mempermudah proses pengembangan, perawatan, dan pengelolaan kode yang lebih terstruktur dan rapi.
 
-### Perbedaaan
+#### Perbedaaan
 1. MVC (Model-View-Controller):
 
     Memisahkan kode menjadi 3 bagian yaitu:
@@ -284,3 +290,49 @@ MVC (Model-View-Controller), MVT (Model-View-Template), dan MVVM (Model-View-Vie
 * ViewModel
 
     Bertugas untuk berinteraksi dengan ***model*** di mana data yang ada akan diteruskan ke *layer **view***.
+
+# Tugas 3
+
+## Deskripsi Tugas
+
+Pada tugas ini, kamu akan menjalankan implementasi konsep *data delivery* serta menerapkan beberapa konsep yang telah dipelajari selama sesi *tutorial*.
+
+*Checklist* untuk tugas ini adalah sebagai berikut:
+
+### Apa perbedaan antara *form* `POST` dan *form* `GET` dalam Django?
+
+Pada hakikatnya, *form* `POST` dan *form* `GET` memiliki fungsi yang sama yaitu untuk mengirimkan nilai variabel ke *file* lain yang telah diatur. Selain itu pengiriman nilai ini juga bisa dikirimkan ke *database*.
+
+Untuk perbedaannya dapat dilihat sebagai berikut:
+
+1. POST
+
+    * Nilai variabel tidak ditampilkan di URL.
+    * Digunakan untuk mengirim data-data yang bersifat pribadi dan rahasia seperti *password*.
+    * Jumlah nilai variabel tidak dibatasi oleh panjang *string*.
+    * Untuk melakukan *input* nilai variabel biasanya melalui *form*.
+    * Pemanggilan *method* `POST` menggunakan `$_POST` yang berfungsi untuk memanggil data yang telah diinputkan agar bisa ditampilkan di *file action*.
+    * Lebih aman karena *method* `POST` mengirimkan data secara langsung (Bersifat *Private*).
+
+2. GET
+
+    * Nilai variabel ditampilkan di URL sehingga *user* dapat melakukan *input* nilai variabel baru dengan mudah.
+    * Digunakan untuk mengirim data-data yang tidak terlalu penting.
+    * Jumlah nilai variabel dibatasi untuk panjang *string* hanya sampai 2047 karakter.
+    * Untuk melakukan *input* nilai variabel biasanya melalui *link*.
+    * Pemanggilan *method* `GET` menggunakan `$_GET` yang memiliki fungsi yang sama dengan `$_POST` namun ini khusus untuk pemanggilan *method* `GET`.
+    * Kurang aman karena *method* `GET` mengirimkan data secara tidak langsung (Bersifat *Public*).
+
+### Apa perbedaan utama antara **XML**, **JSON**, dan **HTML** dalam konteks pengiriman data?
+
+1. **XML**
+
+    * 
+    
+2. **JSON**
+
+    * 
+
+3. **HTML**
+
+    * 
