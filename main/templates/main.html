@@ -1,71 +1,44 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="styles.css">
-        <style>
-            .green-text {
-                color: green;
-            }
-            .red-text {
-                color: red; 
-            }
-            .purple-text {
-                color: purple;
-            }
-            .yellow-text {
-                color: orange;
-            }
-            .text-align{
-                text-align : center;
-            }
-        </style>
-    </head>
-    <body>
-        <center>
-            <div id="intro">
-                <h1>{{ appname }}</h1>
-                <h2>Name: {{ name }}</h2>
-                <h2>Class: {{ class }}</h2>
-            </div>
-        
-        <table border="10">
-            <tr>
-                <th>Name</th>
-                <th>Image</th>
-                <th>Amount</th>
-                <th>Description</th>
-                <th>Price</th>
+{% block content %}
+    <center>
+    <h1>{{ appname }}</h1>
+    <h2>Name: {{ name }}</h2>
+    <h2>Class: {{ class }}</h2>
+
+    <table border="5">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Date Added</th>
+        </tr>
+
+        {% for product in products %}
+            <tr id="elemenHapus">
+                <td>{{product.name}}</td>
+                <td>{{product.description}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.date_added}}</td>
             </tr>
-            <tr>
-                <td>{{ namefood }}</td>
-                <td><img src="https://stardewvalleywiki.com/mediawiki/images/3/33/Seafoam_Pudding.png"/></td>
-                <td class = "text-align">{{amountfood}}</td>
-                <td>
-                    <pre>{{descriptionfood|safe}}</pre>
-                </td>
-                <td>
-                    <pre>{{pricefood|safe}}</pre>
-                </td>
-            </tr>
-            <tr>
-                <td>{{nameamulet}}</td>
-                <td><img src="https://stardewvalleywiki.com/mediawiki/images/2/25/Magic_Rock_Candy.png"/></td>
-                <td class="text-align">{{amountamulet}}</td>
-                <td>
-                    <pre>{{descriptionamulet|safe}}</pre>
-                </td>
-                <td>
-                    <pre>{{priceamulet|safe}}</pre>
-                </td>
-            </tr>
-        </table>
-        </center>
-        <script src="" async defer></script>
-    </body>
-</html>
+        {% endfor %}
+    </table>
+
+    <br />
+    
+    <button onclick="hapusElemen()"> Delete Product </button>
+
+    <script>
+        function hapusElemen() {
+            var elemen = document.getElementById("elemenHapus");
+            elemen.remove();
+        }
+    </script>
+
+    <a href="{% url 'main:create_product' %}">
+        <button>
+            Add New Product
+        </button>
+    </a>
+    </center>  
+{% endblock content %}
