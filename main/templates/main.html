@@ -1,6 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <style>
+        #addproduct{
+            font-weight: bold;
+            cursor: pointer;
+            padding: 5px 5px;
+            margin-top: 5px; 
+        }
+
+        #logout{
+            font-weight: bold;
+            cursor: pointer;
+            padding: 5px 5px;
+            margin-top: 5px; 
+        }
+
+        #button {
+                font-weight: bold;
+                cursor: pointer;
+                padding: 10px 10px;
+                width: 100%;
+                display: block
+        }
+    </style>
+
     <center>
     <h1>{{ appname }}</h1>
     <h2>Name: {{ name }}</h2>
@@ -11,33 +35,52 @@
             <th>Name</th>
             <th>Description</th>
             <th>Price</th>
+            <th>Amount</th>
+            <th>Stock</th>
             <th>Date Added</th>
+            <th>Options</th>
+            <th>Delete</th>
         </tr>
 
         {% for product in products %}
-            <tr id="elemenHapus">
-                <td>{{product.name}}</td>
-                <td>{{product.description}}</td>
-                <td>{{product.price}}</td>
-                <td>{{product.date_added}}</td>
-            </tr>
+            <td>{{product.name}}</td>
+            <td>{{product.description|safe|linebreaksbr}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.amount}}</td>
+            <td>{{product.stok}}</td>
+            <td>{{product.date_added}}</td>
+            <td>
+                {% if product.id %}
+                    <a href="{% url 'main:increase_amount' product.id %}">
+                        <button id="button">Increase Amount</button>
+                    </a>
+                    <a href="{% url 'main:decrease_amount' product.id %}">
+                        <button id="button">Decrease Amount</button>
+                    </a>
+                {% endif %}
+            </td>
+            <td>
+                <a  href="{% url 'main:delete_product' product.id %}">
+                <button id="button">Delete Product</button>
+                </a>
+            </td>
+        </tr>
         {% endfor %}
     </table>
 
     <br />
-    
-    <button onclick="hapusElemen()"> Delete Product </button>
-
-    <script>
-        function hapusElemen() {
-            var elemen = document.getElementById("elemenHapus");
-            elemen.remove();
-        }
-    </script>
 
     <a href="{% url 'main:create_product' %}">
-        <button>
+        <button id="addproduct">
             Add New Product
+        </button>
+    </a>
+
+    <h3>Sesi terakhir login: {{ last_login }}</h3>
+
+    <a href="{% url 'main:logout' %}">
+        <button id="logout">
+            Logout
         </button>
     </a>
     </center>  

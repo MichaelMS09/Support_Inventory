@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+    <title>Register</title>
+{% endblock meta %}
+
+{% block content %}  
+
+<div class = "login">
+    <center>
+        <h1>Register</h1>  
+
+        <form method="POST">
+            {% csrf_token %}
+            <table>
+                {% for field in form %}
+                    <tr>
+                        <td>{{ field.label_tag }}</td>
+                        <td>{{ field }}</td>
+                    </tr>
+
+                    {% if field.errors %}
+                        <tr>
+                            <td></td>
+                            <td>
+                                <ul>
+                                    {% for error in field.errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                <tr>
+                    <td>
+                        <a href="{% url 'main:login' %}" class="back-button">
+                            Back
+                        </a>
+                    </td>
+                    <td>
+                        <input type="submit" name="submit" value="Daftar"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    
+        <!-- Messages tetap ada di sini untuk menampilkan pesan lain yang mungkin Anda butuhkan -->
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</center>
+</div>  
+{% endblock content %}
