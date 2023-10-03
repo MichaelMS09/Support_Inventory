@@ -12,6 +12,8 @@ Adaptable   : [Support Inventory](https://support.adaptable.app/main/)
 
 [Tugas 4](#tugas-4)
 
+[Tugas 5](#tugas-5)
+
 # Tugas 2
 
 ## Checklist Tugas
@@ -832,7 +834,7 @@ Pada tugas ini, kamu akan mengimplementasikan konsep *authentication, session, c
 
 - Kekurangan :
 
-    - **Terbatas pada Model Pengguna Bawaan** : *UserCreationForm* hanya dirancang untuk bekerja dengan model pengguna bawaan Django. Jika Anda memiliki kebutuhan khusus dan menggunakan model pengguna yang berbeda, Anda mungkin perlu menyesuaikan atau membuat *form* pendaftaran pengguna sendiri.
+    - **Terbatas pada Model Pengguna Bawaan** : *UserCreationForm* hanya dirancang untuk bekerja dengan model pengguna bawaan Django. Jika memiliki kebutuhan khusus dan menggunakan model pengguna yang berbeda, mungkin perlu menyesuaikan atau membuat *form* pendaftaran pengguna sendiri.
     - **Kustomisasi Tambahan Diperlukan** : Perlu menambahkan logika tambahan, seperti pengiriman email konfirmasi atau integrasi dengan pustaka autentikasi pihak ketiga, tergantung pada kebutuhan aplikasi.
     - **Tidak Mendukung Opsi Autentikasi Tambahan** : Perlu menambahkan logika tambahan, untuk autentikasi yang lebih kompleks, seperti otentikasi berdasarkan sertifikat atau perangkat eksternal.
 
@@ -850,7 +852,7 @@ Pada tugas ini, kamu akan mengimplementasikan konsep *authentication, session, c
 
 - **Keamanan**: 
     
-    Autentikasi membantu melindungi aplikasi Anda dari penggunaan yang tidak sah dengan memastikan bahwa hanya pengguna yang asli yang dapat masuk ke dalam sistem.
+    Autentikasi membantu melindungi aplikasi dari penggunaan yang tidak sah dengan memastikan bahwa hanya pengguna yang asli yang dapat masuk ke dalam sistem.
     
     Otorisasi memastikan bahwa pengguna hanya memiliki akses ke sumber daya yang mereka izinkan.
 
@@ -1273,3 +1275,242 @@ Penggunaan *cookies* dalam pengembangan web dapat aman secara *default* jika dil
 6. Tekan *button* `logout` untuk kembali ke *page login* dan daftarkan lagi satu akun sesuai dengan `langkah nomor 4`.
 
 7. Ulangi `langkah nomor 5` dan terciptalah **dua** akun pengguna dengan masing-masing memiliki **tiga** *dummy* data.
+
+# Tugas 5
+
+## Deskripsi Tugas
+
+Pada tugas ini, kamu akan mengimplementasikan desain web berdasarkan beberapa hal yang sudah kamu pelajari selama *tutorial* (CSS, Framework, dsb).
+
+*Checklist* untuk tugas ini adalah sebagai berikut:
+
+### A. Kustomisasi desain pada templat HTML yang telah dibuat pada Tugas 4 dengan menggunakan CSS atau CSS framework (seperti Bootstrap, Tailwind, Bulma) dengan ketentuan sebagai berikut
+
+#### Kustomisasi halaman login, register, dan tambah inventori semenarik mungkin.
+
+1. Yang saya tambahkan untuk kustomisasi pada halaman *login*, *register* dan tambah inventori adalah menambahkan background,melakukan penataan tempat agar terlihat rapi dan melakukan *setting* pada *button*
+
+    ```html
+    <style>
+        body {
+            background-image: url("https://wallpapercave.com/wp/wp4194085.png");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: "Comic Sans MS", Times, serif;
+        }
+
+        .login-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            max-width: 100%;
+        }
+
+        .login {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+            text-align: center;
+            padding: 15px;
+            width: 400px;
+        }
+
+        .form-control {
+            width: 125px;
+            padding: 10px;
+            border-radius: 10px;
+            font-family: "Comic Sans MS", Times, serif;
+        }
+
+        .btn.btn-primary {
+            width: 100px;
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: "Comic Sans MS", Times, serif;
+            font-weight: bold;
+        }
+
+        td {
+            padding: 10px;
+        }
+    </style>
+    ```
+
+    > Penjelasan : Pada bagian body saya menambahkan background image dan melakukan setup ukuran. login-box dan login memiliki konsep yang sama sebagai tempat untuk penataan letak data. form-control, btn btn-primary dan td untuk melakukan penataan secara detail untuk setiap data yang ditampilkan
+
+#### Kustomisasi halaman daftar inventori menjadi lebih berwarna maupun menggunakan apporach lain seperti menggunakan Card.
+
+1. Yang saya tambahkan sebagai kustomisasi halaman daftar inventori adalah memberikan warna pada tabel/font tulisan dan penataan untuk setiap data tabel
+
+    ```html
+    <style>
+        body {
+            background-image: url("http://m.gettywallpapers.com/wp-content/uploads/2023/06/Computer-Wallpaper-Aesthetic-Minimalist.jpg");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: "Comic Sans MS", Times, serif;
+        }
+
+        .information-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 75vh;
+            max-width: 100%;
+        }
+
+        #button {
+            font-weight: bold;
+            cursor: pointer;
+            padding: 5px;
+            width: 100%;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center
+        }
+
+        th {
+            background-color: #17a2b8;
+            color: white;
+        }
+
+        tr.bg-info {
+            background-color: #17a2b8;
+            color: white;
+        }
+
+        tr.bg-primary {
+             background-color: #007bff;
+            color: white;
+        }
+
+        tr.bg-success {
+            background-color: #28a745;
+            color: white;
+        }
+
+        h1 {
+            color: white;
+        }
+    </style>
+    ```
+
+    > Penjelasan : table berfungsi sebagai class untuk tag table. th, td, bg-info, bg-primary, bg-success, h1, button merupakan class yang berisi style untuk memberikan warna dan penataan data agar menjadi center.
+
+### B. Jelaskan manfaat dari setiap *element selector* dan kapan waktu yang tepat untuk menggunakannya.
+
+1. ***Universal Selector*** :
+
+- **Manfaat** : *Selector* ini memilih semua elemen dalam dokumen HTML, sehingga dapat digunakan untuk memberikan *style* kepada semua elemen.
+
+- **Waktu yang Tepat** : *Universal selector* sebaiknya digunakan dengan hati-hati, karena dapat mengakibatkan kinerja CSS yang buruk jika digunakan secara berlebihan. Namun *Universal selector* akan berguna jika kita ingin mengaplikasikan *style* untuk seluruh elemen HTML dalam halaman.
+
+2. ***ID Selector*** :
+
+- **Manfaat** : Memilih elemen berdasarkan atribut id, yang harus unik dalam satu halaman HTML, sehingga dapat digunakan untuk memberikan *style* tertentu secara spesifik.
+
+- **Waktu yang Tepat** : Gunakan ID selector saat ingin merubah *style* elemen khusus dengan ID tertentu.
+
+3. ***Class Selector*** :
+
+- **Manfaat** : Memilih elemen berdasarkan atribut class, yang dapat digunakan pada beberapa elemen, sehingga dapat digunakan untuk memberikan *style* beberapa elemen dengan class yang sama.
+
+- **Waktu yang Tepat** : Cocok digunakan untuk mengganti gaya elemen yang memiliki class tertentu. Dapat digunakan pada beberapa elemen sekaligus.
+
+4. ***Type Selector (Element Selector)*** :
+
+- **Manfaat** : Memilih semua elemen dengan jenis tertentu (misalnya, semua paragraf atau semua heading).
+
+- **Waktu yang Tepat** : Cocok digunakan saat ingin mengganti *style* elemen tertentu di seluruh halaman web.
+
+5. ***Attribute Selector*** :
+
+- **Manfaat** : Memilih elemen berdasarkan atribut dan nilainya. Ini berguna ketika ingin memilih elemen dengan atribut khusus.
+
+- **Waktu yang Tepat** : Mengaplikasikan *style* atau pada elemen-elemen yang memiliki atribut tertentu.
+
+### C. Jelaskan HTML5 Tag yang kamu ketahui.
+
+1. <**head**> : Ini adalah kontainer untuk elemen-elemen yang menggambarkan informasi tentang dokumen, seperti judul halaman, meta informasi, dan tautan ke file eksternal seperti CSS dan JavaScript.
+
+2. <**title**> : Menentukan judul halaman yang akan ditampilkan di tab atau judul jendela browser.
+
+3. <**meta**> : Digunakan untuk menyisipkan informasi tentang halaman, seperti karakter set, deskripsi, dan kata kunci.
+
+4. <**style**> : Ini digunakan untuk menyertakan aturan gaya CSS di dalam dokumen HTML.
+
+5. <**body**> : Ini adalah elemen yang berisi konten utama halaman web, seperti teks, gambar, dan elemen-elemen lainnya.
+
+6. <**h1**>, <**h2**>, <**h3**>, <**h4**>, <**h5**>, <**h6**> : Digunakan untuk menampilkan judul atau heading dengan tingkat hierarki yang berbeda. <**h1**> adalah yang paling tinggi, sedangkan <**h6**> adalah yang terendah.
+
+7. <**a**> : Mendefinisikan tautan *hyperlink* ke halaman lain.
+
+8. <**img**> : Digunakan untuk menampilkan gambar di halaman web.
+
+9. <**ul**>, <**ol**>, <**li**> : Elemen ini digunakan untuk membuat daftar tidak berurutan <**ul**>, daftar terurut (<**ol**>), dan item dalam daftar (<**li**>).
+
+10. <**div**>: Elemen ini digunakan untuk mengelompokkan dan mengatur elemen-elemen HTML ke dalam blok yang dapat diubah gayanya.
+
+11. <**table**>, <**tr**>, <**td**>, <**th**> : Elemen ini digunakan untuk membuat tabel dan mengatur data dalam tabel.
+
+12. <**form**> : Digunakan untuk membuat formulir interaktif yang memungkinkan pengguna untuk mengirimkan data.
+
+13. <**input**> : Elemen ini digunakan dalam formulir untuk mengumpulkan data dari pengguna.
+
+### D. Jelaskan perbedaan antara *margin* dan *padding*.
+
+1. ***Margin*** :
+
+- *Margin* adalah ruang di luar batas elemen.
+
+- *Margin* digunakan untuk mengatur jarak antara elemen yang satu dengan elemen yang lain di luar elemen itu sendiri.
+
+- *Margin* tidak memiliki latar belakang atau warna latar belakang, dan area margin biasanya transparan.
+
+2. ***Padding*** :
+
+- *Padding* adalah ruang di antara batas dalam elemen dan kontennya sendiri.
+
+- *Padding* digunakan untuk mengatur jarak antara konten elemen dan batas elemen itu sendiri.
+
+
+- Dapat mengatur warna latar belakang atau gambar latar belakang di dalam area *padding*.
+
+### E. Jelaskan perbedaan antara *framework* CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+
+1. **Tailwind** :
+
+- Tailwind CSS membangun tampilan dengan menggabungkan kelas-kelas utilitas yang telah didefinisikan sebelumnya (***Utility-First Approach***).
+
+- Tailwind CSS memiliki *file* CSS yang lebih kecil sedikit dibandingkan Bootstrap dan hanya akan memuat kelas-kelas utilitas yang ada
+
+- Tailwind CSS memiliki memberikan fleksibilitas dan adaptabilitas tinggi terhadap proyek
+
+- Tailwind tidak mengimpor banyak gaya bawaan, sehingga tidak perlu menimpa banyak aturan gaya jika ingin membuat tampilan yang berbeda dari yang disediakan oleh Tailwind.
+
+2. **Bootstrap** :
+
+- Bootstrap menggunakan gaya dan komponen yang telah didefinisikan, yang memiliki tampilan yang sudah jadi dan dapat digunakan secara langsung (***Component-Based***).
+
+- Bootstrap memiliki *file* CSS yang lebih besar dibandingkan dengan Tailwind CSS karena termasuk banyak komponen yang telah didefinisikan.
+
+- Bootstrap sering kali menghasilkan tampilan yang lebih konsisten di seluruh proyek karena menggunakan komponen yang telah didefinisikan.
+
+- Bootstrap sering digunakan dalam fase *prototyping* karena dapat dengan cepat mengimplementasikan komponen-komponen siap pakai tanpa harus menulis banyak kode kustom.
+
+3. **Kapan Sebaiknya Digunakan** :
+
+- **Bootstrap** sebaiknya digunakan jika memerlukan UI yang konsisten dengan komponen-komponen siap pakai, membutuhkan prototyping cepat, atau jika tidak ingin menyesuaikan *style* secara mendalam.
+
+- **Tailwind** CSS lebih cocok jika ingin membangun UI yang sangat kustom, memiliki kontrol yang lebih besar atas gaya, dan ingin menghindari kelas-kelas bawaan yang tidak digunakan. Ini juga dapat menjadi pilihan yang lebih baik jika memiliki proyek yang lebih besar dan kompleks yang memerlukan penyesuaian yang mendalam.
