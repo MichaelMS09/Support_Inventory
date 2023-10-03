@@ -5,55 +5,86 @@
 {% endblock meta %}
 
 {% block content %}  
+    <style>
+        body {
+            background-image: url("https://wallpaperaccess.com/full/1261646.jpg");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: "Comic Sans MS", Times, serif;
+        }
 
-<div class = "login">
-    <center>
-        <h1>Register</h1>  
+        .register-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            max-width: 100%;
+        }
 
-        <form method="POST">
-            {% csrf_token %}
-            <table>
-                {% for field in form %}
-                    <tr>
-                        <td>{{ field.label_tag }}</td>
-                        <td>{{ field }}</td>
-                    </tr>
+        .register {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+            text-align: center;
+            padding: 80px;
+            width: 500px;
+        }
 
-                    {% if field.errors %}
+        td {
+            padding: 10px;
+        }
+        
+    </style>
+
+    <div class = "register-box">
+        <div class = "register">
+            <center>
+                <h1>Register</h1>  
+
+                <form method="POST">
+                    {% csrf_token %}
+                    <table>
+                        {% for field in form %}
+                            <tr>
+                                <td>{{ field.label_tag }}</td>
+                                <td>{{ field }}</td>
+                            </tr>
+
+                            {% if field.errors %}
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <ul>
+                                            {% for error in field.errors %}
+                                                <li>{{ error }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
                         <tr>
-                            <td></td>
                             <td>
-                                <ul>
-                                    {% for error in field.errors %}
-                                        <li>{{ error }}</li>
-                                    {% endfor %}
-                                </ul>
+                                <a href="{% url 'main:login' %}" class="back-button">
+                                    Back
+                                </a>
+                            </td>
+                            <td>
+                                <input type="submit" name="submit" value="Daftar" class="btn btn-primary"/>
                             </td>
                         </tr>
-                    {% endif %}
-                {% endfor %}
-                <tr>
-                    <td>
-                        <a href="{% url 'main:login' %}" class="back-button">
-                            Back
-                        </a>
-                    </td>
-                    <td>
-                        <input type="submit" name="submit" value="Daftar"/>
-                    </td>
-                </tr>
-            </table>
-        </form>
-    
-        <!-- Messages tetap ada di sini untuk menampilkan pesan lain yang mungkin Anda butuhkan -->
-        {% if messages %}
-            <ul>
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
+                    </table>
+                </form>
+
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </center>
+        </div> 
     </div>
-</center>
-</div>  
 {% endblock content %}

@@ -17,17 +17,24 @@ import datetime
 # Create your views here.
 @login_required(login_url='/login')
 def show_main(request):
-    products = Product.objects.filter(user=request.user)
-
     context = {
         'appname' : 'Support Inventory',
         'name': request.user.username,
         'class': 'PBP E',
-        'products': products,
         'last_login': request.COOKIES['last_login'],
     }
 
     return render(request, "main.html", context)
+
+def show_product(request):
+    products = Product.objects.filter(user=request.user)
+
+    context = {
+        'name': request.user.username,
+        'products': products,
+    }
+
+    return render(request, "show_product.html", context)
 
 def create_product(request):
     form = ProductForm(request.POST or None)
@@ -36,35 +43,53 @@ def create_product(request):
         product = form.save(commit=False)
         product.user = request.user
         product.save()
-        return HttpResponseRedirect(reverse('main:show_main'))
+        return HttpResponseRedirect(reverse('main:show_product'))
 
-    context = {'form': form}
+    context = {
+        'form': form,
+        'name': request.user.username,
+    }
     return render(request, "create_product.html", context)
 
 def increase_amount(request, product_id):
     product = Product.objects.get(pk=product_id)
     if product.stok <= 0:
-        return redirect('main:show_main')
+        return redirect('main:show_product')
     else:
         product.amount += 1
         product.stok -= 1
     product.save()
-    return HttpResponseRedirect(reverse('main:show_main'))
+    return HttpResponseRedirect(reverse('main:show_product'))
 
 def decrease_amount(request, product_id):
     product = Product.objects.get(pk=product_id)
     if product.amount <= 0:
         if product.stok <= 0:
             product.delete()
-        return redirect('main:show_main')
+        return redirect('main:show_product')
     else:
         product.amount -= 1
     product.save()
-    return HttpResponseRedirect(reverse('main:show_main'))
+    return HttpResponseRedirect(reverse('main:show_product'))
 
 def delete_product(request, product_id):
     Product.objects.get(pk=product_id).delete()
-    return HttpResponseRedirect(reverse('main:show_main'))
+    return HttpResponseRedirect(reverse('main:show_product'))
+
+def edit_product(request, id):
+    product = Product.objects.get(pk = id)
+
+    form = ProductForm(request.POST or None, instance=product)
+
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_product'))
+
+    context = {
+        'form': form,
+        'name': request.user.username,
+    }
+    return render(request, "edit_product.html", context)
 
 def register(request):
     form = UserCreationForm()

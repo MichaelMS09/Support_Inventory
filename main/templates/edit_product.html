@@ -1,9 +1,11 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
+
+{% load static %}
 
 {% block content %}
     <style>
         body {
-            background-image: url("http://m.gettywallpapers.com/wp-content/uploads/2023/06/Aesthetic-Minimalist-Desktop-Wallpaper.jpg");
+            background-image: url("http://m.gettywallpapers.com/wp-content/uploads/2023/06/Aesthetic-Minimalist-Laptop-Wallpaper.jpg");
             background-size: 100% 100%;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -42,7 +44,7 @@
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="">
             {{ name }}
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,7 +63,8 @@
 
     <div class = "create-box">
         <div class = "create">
-            <h2>Add New Product</h2>
+            <h2>Edit Product</h2>
+
             <form method="POST">
                 {% csrf_token %}
                 <table>
@@ -69,7 +72,7 @@
                     <tr>
                         <td></td>
                         <td>
-                            <input type="submit" value="Add Product" class="btn btn-primary"/>
+                            <input type="submit" value="Edit Product" class="btn btn-primary"/>
                         </td>
                     </tr>
                 </table>

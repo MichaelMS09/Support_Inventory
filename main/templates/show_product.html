@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <style>
+        body {
+            background-image: url("http://m.gettywallpapers.com/wp-content/uploads/2023/06/Computer-Wallpaper-Aesthetic-Minimalist.jpg");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: "Comic Sans MS", Times, serif;
+        }
+
+        .information-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 75vh;
+            max-width: 100%;
+        }
+
+        #button {
+            font-weight: bold;
+            cursor: pointer;
+            padding: 5px;
+            width: 100%;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center
+        }
+
+        th {
+            background-color: #17a2b8;
+            color: white;
+        }
+
+        tr.bg-info {
+            background-color: #17a2b8;
+            color: white;
+        }
+
+        tr.bg-primary {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr.bg-success {
+            background-color: #28a745;
+            color: white;
+        }
+        h1 {
+            color: white;
+        }
+    </style>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            {{ name }}
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+            <a class="nav-link active" aria-current="page" href="{% url 'main:show_main' %}">Home</a>
+            <a class="nav-link" href="{% url 'main:show_product' %}">List Product</a>
+            <a class="nav-link" href="{% url 'main:create_product' %}">New Product</a>
+            <a class="nav-link" href="{% url 'main:logout' %}">Logout</a>
+            </div>
+        </div>
+        </div>
+    </nav>
+
+    <center>
+        <h1>List Inventory {{ name }}</h1>
+    </center>
+
+    <div class="information-box">
+        <table>
+            <thead>
+                <tr class="bg-info">
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Amount</th>
+                    <th>Stock</th>
+                    <th>Date Added</th>
+                    <th>Options</th>
+                    <th>Delete</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for product in products %}
+                    {% if forloop.last %}
+                    <tr class="bg-primary">
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.description|safe|linebreaksbr }}</td>
+                        <td>{{ product.price }}</td>
+                        <td>{{ product.amount }}</td>
+                        <td>{{ product.stok }}</td>
+                        <td>{{ product.date_added }}</td>
+                        <td>
+                            {% if product.id %}
+                                <a href="{% url 'main:increase_amount' product.id %}">
+                                    <button id="button">
+                                        +
+                                    </button>
+                                </a>
+                                <a href="{% url 'main:decrease_amount' product.id %}">
+                                    <button id="button">
+                                        -
+                                    </button>
+                                </a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'main:delete_product' product.id %}">
+                                <button id="button">
+                                    Delete
+                                </button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'main:edit_product' product.pk %}">
+                                <button id="button">
+                                    Edit
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                        
+                    {% else %}
+                    <tr class="bg-success">
+                        <td>{{product.name}}</td>
+                        <td>{{product.description|safe|linebreaksbr}}</td>
+                        <td>{{product.price}}</td>
+                        <td>{{product.amount}}</td>
+                        <td>{{product.stok}}</td>
+                        <td>{{product.date_added}}</td>
+                        <td>
+                            {% if product.id %}
+                                <a href="{% url 'main:increase_amount' product.id %}">
+                                    <button id="button">+</button>
+                                </a>
+                                <a href="{% url 'main:decrease_amount' product.id %}">
+                                    <button id="button">-</button>
+                                </a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a  href="{% url 'main:delete_product' product.id %}">
+                                <button id="button">Delete Product</button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'main:edit_product' product.pk %}">
+                                <button id="button">
+                                    Edit
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

@@ -5,40 +5,87 @@
 {% endblock meta %}
 
 {% block content %}
+    <style>
+        body {
+            background-image: url("https://wallpapercave.com/wp/wp4194085.png");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: "Comic Sans MS", Times, serif;
+        }
 
-<div class = "login">
-    <center>
-    <h1>Login</h1>
+        .login-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            max-width: 100%;
+        }
 
-    <form method="POST" action="">
-        {% csrf_token %}
-        <table>
-            <tr>
-                <td>Username: </td>
-                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
-            </tr>
-                    
-            <tr>
-                <td>Password: </td>
-                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
-            </tr>
+        .login {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+            text-align: center;
+            padding: 15px;
+            width: 400px;
+        }
 
-            <tr>
-                <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
-            </tr>
-        </table>
-    </form>
+        .form-control {
+            width: 125px;
+            padding: 10px;
+            border-radius: 10px;
+            font-family: "Comic Sans MS", Times, serif;
+        }
 
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}     
-        
-    Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a>
-</center>
-</div>
+        .btn.btn-primary {
+            width: 100px;
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: "Comic Sans MS", Times, serif;
+            font-weight: bold;
+        }
+
+        td {
+            padding: 10px;
+        }
+    </style>
+
+    <div class = "login-box">
+        <div class = "login">
+            <center>
+            <h1>Login</h1>
+
+            <form method="POST" action="">
+                {% csrf_token %}
+                <table>
+                    <tr>
+                        <td>Username: </td>
+                        <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
+                    </tr>
+                            
+                    <tr>
+                        <td>Password: </td>
+                        <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td><input class="btn btn-primary" type="submit" value="Login"></td>
+                    </tr>
+                </table>
+            </form>
+
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}     
+                
+            Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a>
+            </center>
+        </div>
+    </div>
 {% endblock content %}

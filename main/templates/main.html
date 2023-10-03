@@ -2,14 +2,23 @@
 
 {% block content %}
     <style>
-        #addproduct{
-            font-weight: bold;
-            cursor: pointer;
-            padding: 5px 5px;
-            margin-top: 5px; 
+        body {
+            background-image: url("https://mcdn.wallpapersafari.com/medium/37/96/7MWTkO.jpeg");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: "Comic Sans MS", Times, serif;
         }
 
-        #logout{
+        .information-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 75vh;
+            max-width: 100%;
+        }
+
+        #addproduct{
             font-weight: bold;
             cursor: pointer;
             padding: 5px 5px;
@@ -19,69 +28,48 @@
         #button {
                 font-weight: bold;
                 cursor: pointer;
-                padding: 10px 10px;
+                padding: 5px;
                 width: 100%;
-                display: block
+        }
+
+        h1 {
+            padding: 10px;
+        }
+
+        h2 {
+            padding: 10px;
+        }
+
+        h3 {
+            padding: 10px;
         }
     </style>
 
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+        {{ name }}
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+        <a class="nav-link active" aria-current="page" href="{% url 'main:show_main' %}">Home</a>
+        <a class="nav-link" href="{% url 'main:show_product' %}">List Product</a>
+        <a class="nav-link" href="{% url 'main:create_product' %}">New Product</a>
+        <a class="nav-link" href="{% url 'main:logout' %}">Logout</a>
+        </div>
+    </div>
+    </div>
+</nav>
+
+<div class="information-box">
     <center>
-    <h1>{{ appname }}</h1>
-    <h2>Name: {{ name }}</h2>
-    <h2>Class: {{ class }}</h2>
-
-    <table border="5">
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Amount</th>
-            <th>Stock</th>
-            <th>Date Added</th>
-            <th>Options</th>
-            <th>Delete</th>
-        </tr>
-
-        {% for product in products %}
-            <td>{{product.name}}</td>
-            <td>{{product.description|safe|linebreaksbr}}</td>
-            <td>{{product.price}}</td>
-            <td>{{product.amount}}</td>
-            <td>{{product.stok}}</td>
-            <td>{{product.date_added}}</td>
-            <td>
-                {% if product.id %}
-                    <a href="{% url 'main:increase_amount' product.id %}">
-                        <button id="button">Increase Amount</button>
-                    </a>
-                    <a href="{% url 'main:decrease_amount' product.id %}">
-                        <button id="button">Decrease Amount</button>
-                    </a>
-                {% endif %}
-            </td>
-            <td>
-                <a  href="{% url 'main:delete_product' product.id %}">
-                <button id="button">Delete Product</button>
-                </a>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-
-    <br />
-
-    <a href="{% url 'main:create_product' %}">
-        <button id="addproduct">
-            Add New Product
-        </button>
-    </a>
-
-    <h3>Sesi terakhir login: {{ last_login }}</h3>
-
-    <a href="{% url 'main:logout' %}">
-        <button id="logout">
-            Logout
-        </button>
-    </a>
-    </center>  
+        <h1>Welcome To {{ appname }}</h1>
+        <h2>Name: {{ name }}</h2>
+        <h2>Class: {{ class }}</h2>
+        <h3>Sesi terakhir login: {{ last_login }}</h3>
+    </center>
+</div>
 {% endblock content %}
