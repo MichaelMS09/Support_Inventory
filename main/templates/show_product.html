@@ -5,7 +5,7 @@
 {% block content %}
     <style>
         body {
-            background-image: url("http://m.gettywallpapers.com/wp-content/uploads/2023/06/Computer-Wallpaper-Aesthetic-Minimalist.jpg");
+            background-image: url("https://i.pinimg.com/originals/f9/f8/48/f9f848b6a9e164a865849b18e3dae29f.jpg");
             background-size: 100% 100%;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -21,10 +21,12 @@
         }
 
         #button {
+            background-color: #17a2b8;
             font-weight: bold;
             cursor: pointer;
             padding: 5px;
             width: 100%;
+            color: white;
         }
 
         table {
@@ -33,7 +35,7 @@
         }
 
         th, td {
-            border: 1px solid black;
+            border: 2px solid black;
             padding: 8px;
             text-align: center
         }
@@ -161,7 +163,7 @@
                         </td>
                         <td>
                             <a  href="{% url 'main:delete_product' product.id %}">
-                                <button id="button">Delete Product</button>
+                                <button id="button">Delete</button>
                             </a>
                         </td>
                         <td>

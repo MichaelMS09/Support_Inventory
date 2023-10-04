@@ -21,7 +21,7 @@ def show_main(request):
         'appname' : 'Support Inventory',
         'name': request.user.username,
         'class': 'PBP E',
-        'last_login': request.COOKIES['last_login'],
+        'last_login': request.COOKIES.get('last_login'),
     }
 
     return render(request, "main.html", context)
