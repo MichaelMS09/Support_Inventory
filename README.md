@@ -14,6 +14,8 @@ Adaptable   : [Support Inventory](https://support.adaptable.app/main/)
 
 [Tugas 5](#tugas-5)
 
+[Tugas 6](#tugas-6)
+
 # Tugas 2
 
 ## Checklist Tugas
@@ -29,7 +31,7 @@ Adaptable   : [Support Inventory](https://support.adaptable.app/main/)
     ```
     python -m venv env
     ```
-    Penggunaan virtual enviroment ini bertujuan melakukan isolasi pada aplikasi yang dibuat agar tidak terjadi tabrakan/gangguan terhadap versi lain yang ada pada komputer kita.
+    Penggunaan virtual environment ini bertujuan melakukan isolasi pada aplikasi yang dibuat agar tidak terjadi tabrakan/gangguan terhadap versi lain yang ada pada komputer kita.
 5. Setelah kita buat *virtual environment*, sekarang kita aktifkan *virtual environment* tersebut dengan perintah.
 
     ```
@@ -242,13 +244,13 @@ Adaptable   : [Support Inventory](https://support.adaptable.app/main/)
 4. Setelah semua selesai diolah, data tersebut akan ditampilkan dalam bentuk *rendered web page* kepada *user*.
 
 ### C. Jelaskan mengapa kita menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
-1. Tujuan kita menggunakan *virtual enviroment* :
+1. Tujuan kita menggunakan *virtual environment* :
 
     > Menciptakan tempat khusus agar proyek perangkat lunak yang kita kerjakan dapat bekerja dengan lebih teratur dan lebih aman. 
 
     > Mengisolasi proyek-proyek lain sehingga tidak ada konflik dalam melakukan pekerjaan. Hal ini bertujuan karena terkadang untuk setiap proyek yang kita kerjakan memerlukan spesifikasi atau versi yang berbeda dari spesifikasi utama perangkat kita.
 
-    > Dapat melakukan *install* untuk paket-paket Python yang diperlukan dalam proyek tanpa merusak instalasi Python *Global* pada perangkat kita. Selain itu, kita juga dapat menghapus paket tersebut dengan bebas selama berada dalam *virtual enviroment* tanpa memperhatikan dampak pada sistem operasi utama perangkat kita.
+    > Dapat melakukan *install* untuk paket-paket Python yang diperlukan dalam proyek tanpa merusak instalasi Python *Global* pada perangkat kita. Selain itu, kita juga dapat menghapus paket tersebut dengan bebas selama berada dalam *virtual environment* tanpa memperhatikan dampak pada sistem operasi utama perangkat kita.
 
 2. Kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan *virtual environment*. Namun, hal ini sangatlah tidak direkomendasikan karena jika kita melakukan *install* Django ke lingkungan *default/global* maka kita hanya akan dapat menargetkan satu versi Django di perangkat kita dan hal ini bisa menjadi masalah jika kita ingin membuat situs web baru yang menggunakan versi Django terbaru sambil mempertahankan situs web yang bergantung pada versi Django yang lama.
 
@@ -1514,3 +1516,279 @@ Pada tugas ini, kamu akan mengimplementasikan desain web berdasarkan beberapa ha
 - **Bootstrap** sebaiknya digunakan jika memerlukan UI yang konsisten dengan komponen-komponen siap pakai, membutuhkan prototyping cepat, atau jika tidak ingin menyesuaikan *style* secara mendalam.
 
 - **Tailwind** CSS lebih cocok jika ingin membangun UI yang sangat kustom, memiliki kontrol yang lebih besar atas gaya, dan ingin menghindari kelas-kelas bawaan yang tidak digunakan. Ini juga dapat menjadi pilihan yang lebih baik jika memiliki proyek yang lebih besar dan kompleks yang memerlukan penyesuaian yang mendalam.
+
+# Tugas 6
+
+## Deskripsi Tugas
+
+Pada tugas ini, kamu akan mengimplementasikan AJAX pada aplikasi yang telah kamu buat pada tugas sebelumnya.
+
+*Checklist* untuk tugas ini adalah sebagai berikut:
+
+### A. Jelaskan perbedaan antara *asynchronous programming* dengan *synchronous programming*.
+
+1. *Asynchronous Programming*
+
+    - Tugas-tugas yang memerlukan waktu lama atau Input/Output yang lambat dijalankan secara non-blok. Ini berarti ketika suatu tugas memulai operasi yang memerlukan waktu, aplikasi tidak harus menunggu hingga tugas tersebut selesai sebelum melanjutkan tugas-tugas lainnya.
+    - Biasanya melibatkan *callback functions*, *promises**, atau *async/await* untuk mengelola tugas-tugas yang berjalan secara asinkron.
+    - Dapat meningkatkan efisiensi program.
+
+2. *Synchronous Programming*
+
+    - Tugas-tugas dieksekusi satu per satu dalam urutan yang telah ditentukan. Artinya, satu tugas harus selesai sebelum tugas berikutnya dimulai.
+    - Kode pada program berjalan secara blok, yang berarti jika ada tugas yang memerlukan waktu lama, itu akan menghentikan eksekusi seluruh program hingga tugas tersebut selesai.
+    - Sederhana dan mudah dipahami, namun dapat mengakibatkan aplikasi menjadi lambat dan tidak responsif.
+
+### B. Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma *event-driven programming*. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.
+
+Paradigma *event-driven programming* adalah cara berpemrograman di mana aplikasi merespons peristiwa atau kejadian yang terjadi, seperti tindakan pengguna (klik mouse atau *input keyboard*), perubahan status variabel, atau data yang diterima dari sumber eksternal seperti permintaan HTTP. Aplikasi yang mengikuti paradigma ini memahami dan menanggapi peristiwa-peristiwa ini dengan menjalankan kode tertentu yang terkait dengan setiap peristiwa, jadi aplikasi tidak mengeksekusi operasi secara berurutan, tetapi program akan menunggu dan merespons *events* yang terjadi.
+
+Contoh penerapannya:
+1. Aplikasi Desktop:
+
+    - Tombol Klik
+    - Perubahan Fokus
+    - Mouse Hover
+
+2. Aplikasi Web:
+
+    - Klik Tombol
+    - Submit Formulir
+    - Perubahan Isian Formulir
+
+3. Aplikasi Mobile:
+
+    - Sentuhan Layar
+    - Rotasi Perangkat
+
+4. Sistem Operasi:
+
+    - Penyisipan Perangkat USB
+    - Ketika Baterai Rendah
+
+5. Game Development:
+
+    - Ketika Karakter Pemain Bertabrakan
+    - Pencetakan Tombol Pada Kontroler
+
+### C. Jelaskan penerapan *asynchronous programming* pada AJAX.
+
+*Asynchronous programming* dalam konteks AJAX adalah pendekatan di mana permintaan HTTP (seperti permintaan untuk mengambil data dari server) dijalankan secara asinkron, artinya aplikasi web Anda tidak harus menunggu hingga permintaan tersebut selesai sebelum melanjutkan eksekusi kode lainnya. Ini memungkinkan aplikasi untuk tetap responsif, karena Anda dapat menjalankan tugas-tugas lain selama permintaan sedang dalam proses.
+
+Berikut adalah alur *asynchronous programming* pada AJAX:
+
+1. **Membuat Objek XMLHttpRequest**: Anda mulai dengan membuat objek XMLHttpRequest. Ini adalah objek yang memungkinkan Anda berinteraksi dengan server secara asinkron dan mengirim permintaan HTTP.
+2. **Mengatur Fungsi *Event Handler***: Anda kemudian menetapkan fungsi *event handler* yang akan dijalankan ketika permintaan selesai atau ketika ada perubahan dalam status permintaan. Fungsi ini biasanya akan menangani respons dari *server*.
+3. **Mengatur Permintaan**: Anda mengatur detail permintaan, seperti metode HTTP (GET, POST, dll.) dan URL yang akan diminta.
+4. **Mengirim Permintaan (*Send*)**.
+5. **Melanjutkan Eksekusi Kode Lain**: Setelah permintaan dikirim, kode program Anda dapat melanjutkan eksekusi tugas-tugas lainnya, sehingga menjaga aplikasi tetap responsif.
+6. **Penanganan Respons**: Ketika permintaan selesai atau ada perubahan status, fungsi penanganan *event* yang telah ditetapkan akan dieksekusi.
+
+### D. Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada *library* jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.
+
+1. Fetch API:
+
+    A. Kelebihan:
+    - *Modern & Native*: Fetch API adalah bagian dari standar JavaScript modern, sehingga tidak perlu mengunduh atau memasang perpustakaan tambahan.
+    
+    - *Promise-based*: Membuat kode asinkron lebih mudah dikelola dan diurai.
+
+    - Ringan: Fetch API lebih ringan daripada jQuery karena hanya berfokus pada tugas pemrosesan HTTP. Fetch API juga adalah API JavaScript murni dan lebih ringan daripada jQuery. Ini dapat mengurangi source load halaman dan mempercepat load time.
+
+    B. Kekurangan:
+    - Kurva Pembelajaran: Fetch API bisa terasa lebih rumit untuk pemula karena melibatkan *Promise* dan memerlukan lebih banyak kode dibandingkan jQuery.
+
+    - Kompatibilitas Terbatas: Meskipun banyak browser modern mendukung Fetch API, beberapa versi browser lama mungkin tidak.
+
+2. *Library* jQuery:
+
+    A. Kelebihan:
+    - Sederhana dan Mudah Dipahami: jQuery adalah perpustakaan JavaScript yang sangat mudah dipelajari, bahkan bagi pemula. Ini menyederhanakan banyak aspek pengembangan web, termasuk AJAX.
+
+    - Kompatibilitas yang Kuat: jQuery dirancang untuk bekerja dengan berbagai versi browser, termasuk browser lama, sehingga menjadikannya pilihan yang lebih aman jika Anda perlu mendukung berbagai platform.
+
+    - Berbagai Fitur Tambahan: Selain AJAX, jQuery juga memiliki banyak fitur tambahan yang berguna untuk manipulasi DOM dan animasi.
+
+    B. Kekurangan:
+    - Ukuran Besar: jQuery adalah perpustakaan yang cukup besar, sehingga dapat memperlambat waktu pemuatan halaman web jika tidak dioptimalkan dengan baik.
+
+    - Kinerja: Dalam beberapa situasi, Fetch API dapat memiliki kinerja yang lebih baik daripada jQuery karena jQuery memiliki beberapa lapisan abstraksi tambahan.
+
+3. Pendapat saya
+
+Menurut saya, Fetch API lebih baik karena memiliki kinerja yang cepat serta perpustakaan yang lengkap, walaupun memiliki kompleksitas yang tinggi, tujuan AJAX dalam memproses request asinkronus dapat lebih mudah diproses di dalam Fetch API. Maka dari itu, penggunaan Fetch API lebih disarankan dibandingkan jQuery. Dan juga seiring berjalannya waktu, penggunaan jQuery dalam pengembangan web semakin berkurang, karena kemajuan teknologi JavaScript.
+
+### E. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara *step-by-step*.
+
+#### 1. AJAX GET
+
+1. Buka file `views.py` pada direktori `main`. Dan tambahkan method `get_product_json`.
+
+    ```python
+    def get_product_json(request):
+        product_item = Product.objects.all()
+        return HttpResponse(serializers.serialize('json', product_item))
+    ```
+
+2. Tambahkan method yang sudah dibuat pada file `urls.py` pada direktori `main` dengan kode berikut.
+
+    ```python
+    from main.views import get_product_ajax
+    ```
+
+    ```python
+    path('get-product/', get_product_json, name='get_product_json'),
+    ```
+
+3. Buka file `main.html` pada direktori `main\Templates` hapus bagian table dan ubah dengan kode berikut.
+
+    ```html
+    <table id="product_table"></table>
+    ```
+
+4. Pada file yang sama tambahkan kode berikut pada bagian paling bawah.
+
+    ```html
+    <script>
+        async function getProducts() {
+            return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+        }
+
+        async function refreshProducts() {
+            document.getElementById("product_table").innerHTML = ""
+            const products = await getProducts()
+            let htmlString = `<tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Date Added</th>
+            </tr>`
+            products.forEach((item) => {
+                htmlString += `\n<tr>
+                <td>${item.fields.name}</td>
+                <td>${item.fields.price}</td>
+                <td>${item.fields.description}</td>
+                <td>${item.fields.date_added}</td>
+            </tr>` 
+            })
+            
+            document.getElementById("product_table").innerHTML = htmlString
+        }
+
+        refreshProducts()
+    </script>
+    ```
+
+#### 2. AJAX POST
+
+1. Buka file `views.py` pada direktori `main`. Dan tambahkan *import* serta method `add_product_ajax`.
+
+    ```python
+    from django.views.decorators.csrf import csrf_exempt
+    from django.http import HttpResponseNotFound
+    ```
+
+    ```python
+    @csrf_exempt
+    def add_product_ajax(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        price = request.POST.get("price")
+        description = request.POST.get("description")
+        user = request.user
+
+        new_product = Product(name=name, price=price, description=description, user=user)
+        new_product.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
+    ```
+
+2. Tambahkan method yang sudah dibuat pada file `urls.py` pada direktori `main` dengan kode berikut.
+
+    ```python
+    from main.views import add_product_ajax
+    ```
+
+    ```python
+    path('create-product-ajax/', add_product_aja, name='add_product_ajax')
+    ```
+
+3. Buka file `main.html` pada direktori `main\Templates` dan tambahkan kode berikut.
+
+    ```html
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form" onsubmit="return false;">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="price" class="col-form-label">Price:</label>
+                            <input type="number" class="form-control" id="price" name="price"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="col-form-label">Description:</label>
+                            <textarea class="form-control" id="description" name="description"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    ```
+
+4. Pada file yang sama tambahkan fungsi button berikut.
+
+    ```html
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button>
+    ```
+
+5. Pada file yang sama, pada bagian script tambahkan kode berikut ini.
+
+    ```html
+    <script>
+        ...
+        function addProduct() {
+            fetch("{% url 'main:add_product_ajax' %}", {
+                method: "POST",
+                body: new FormData(document.querySelector('#form'))
+            }).then(refreshProducts)
+
+            document.getElementById("form").reset()
+            return false
+        }
+        document.getElementById("button_add").onclick = addProduct
+    </script>
+    ```
+
+#### 3. Melakukan perintah `collectstatic`.
+
+1. Buka *command prompt* atau *terminal shell* pada direktori utama. Lalu aktifkan *virtual environment* tersebut dengan perintah.
+
+    ```
+    env\Scripts\activate.bat -> (Untuk Windows)
+
+                        Atau
+    
+    source env/bin/activate -> (Untuk Mac/Linux)
+    ```
+
+2. Untuk mengumpulkan *file static* dari setiap aplikasi ke dalam satu folder, jalankan perintah berikut ini.
+
+    ```
+    python manage.py collectstatic
+    ```

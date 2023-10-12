@@ -12,12 +12,10 @@
             font-family: "Comic Sans MS", Times, serif;
         }
 
-        .information-box {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 75vh;
-            max-width: 100%;
+        .card {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+            padding: 25px;
         }
 
         #button {
@@ -34,10 +32,22 @@
             width: 100%;
         }
 
-        th, td {
+        .col-md-1 {
             border: 2px solid black;
             padding: 8px;
-            text-align: center
+            text-align: center;
+        }
+
+        .col-md-2 {
+            border: 2px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .col-md-3 {
+            border: 2px solid black;
+            padding: 8px;
+            text-align: center;
         }
 
         th {
@@ -45,20 +55,21 @@
             color: white;
         }
 
-        tr.bg-info {
+        .bg-info {
             background-color: #17a2b8;
             color: white;
         }
 
-        tr.bg-primary {
+        .bg-primary {
             background-color: #007bff;
             color: white;
         }
 
-        tr.bg-success {
+        .bg-success {
             background-color: #28a745;
             color: white;
         }
+
         h1 {
             color: white;
         }
@@ -83,100 +94,186 @@
         </div>
     </nav>
 
-    <center>
-        <h1>List Inventory {{ name }}</h1>
-    </center>
-
-    <div class="information-box">
-        <table>
-            <thead>
-                <tr class="bg-info">
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Amount</th>
-                    <th>Stock</th>
-                    <th>Date Added</th>
-                    <th>Options</th>
-                    <th>Delete</th>
-                    <th>Edit</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                {% for product in products %}
-                    {% if forloop.last %}
-                    <tr class="bg-primary">
-                        <td>{{ product.name }}</td>
-                        <td>{{ product.description|safe|linebreaksbr }}</td>
-                        <td>{{ product.price }}</td>
-                        <td>{{ product.amount }}</td>
-                        <td>{{ product.stok }}</td>
-                        <td>{{ product.date_added }}</td>
-                        <td>
-                            {% if product.id %}
-                                <a href="{% url 'main:increase_amount' product.id %}">
-                                    <button id="button">
-                                        +
-                                    </button>
-                                </a>
-                                <a href="{% url 'main:decrease_amount' product.id %}">
-                                    <button id="button">
-                                        -
-                                    </button>
-                                </a>
-                            {% endif %}
-                        </td>
-                        <td>
-                            <a href="{% url 'main:delete_product' product.id %}">
-                                <button id="button">
-                                    Delete
-                                </button>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="{% url 'main:edit_product' product.pk %}">
-                                <button id="button">
-                                    Edit
-                                </button>
-                            </a>
-                        </td>
-                    </tr>
-                        
-                    {% else %}
-                    <tr class="bg-success">
-                        <td>{{product.name}}</td>
-                        <td>{{product.description|safe|linebreaksbr}}</td>
-                        <td>{{product.price}}</td>
-                        <td>{{product.amount}}</td>
-                        <td>{{product.stok}}</td>
-                        <td>{{product.date_added}}</td>
-                        <td>
-                            {% if product.id %}
-                                <a href="{% url 'main:increase_amount' product.id %}">
-                                    <button id="button">+</button>
-                                </a>
-                                <a href="{% url 'main:decrease_amount' product.id %}">
-                                    <button id="button">-</button>
-                                </a>
-                            {% endif %}
-                        </td>
-                        <td>
-                            <a  href="{% url 'main:delete_product' product.id %}">
-                                <button id="button">Delete</button>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="{% url 'main:edit_product' product.pk %}">
-                                <button id="button">
-                                    Edit
-                                </button>
-                            </a>
-                        </td>
-                    </tr>
-                    {% endif %}
-                {% endfor %}
-            </tbody>
-        </table>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form" onsubmit="return false;">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="price" class="col-form-label">Price:</label>
+                            <input type="number" class="form-control" id="price" name="price"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="col-form-label">Amount:</label>
+                            <input type="number" class="form-control" id="amount" name="amount"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="col-form-label">Stock:</label>
+                            <input type="number" class="form-control" id="stok" name="stok"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="col-form-label">Description:</label>
+                            <textarea class="form-control" id="description" name="description"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="confirmationModalLabel">Delete Confirmation</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to remove this item?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmDelete" data-bs-dismiss="modal">Remove</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mx-auto my-5">
+        <div class="card-header bg-info">
+            <h5 class="card-title">List Inventory {{ name }}</h5>
+        </div>
+        <div class="card-body">
+            <div class="row bg-info">
+                <div class="col-md-2">Name</div>
+                <div class="col-md-3">Description</div>
+                <div class="col-md-1">Price</div>
+                <div class="col-md-1">Amount</div>
+                <div class="col-md-1">Stock</div>
+                <div class="col-md-1">Date Added</div>
+                <div class="col-md-1">Options</div>
+                <div class="col-md-1">Delete</div>
+                <div class="col-md-1">Edit</div>
+            </div>
+    
+            {% for product in products %}
+                <div class="row {% if forloop.last %}bg-primary{% else %}bg-success{% endif %}">
+                    <div class="col-md-2">{{ product.name }}</div>
+                    <div class="col-md-3">{{ product.description|safe|linebreaksbr }}</div>
+                    <div class="col-md-1">{{ product.price }}</div>
+                    <div class="col-md-1">{{ product.amount }}</div>
+                    <div class="col-md-1">{{ product.stok }}</div>
+                    <div class="col-md-1">{{ product.date_added }}</div>
+                    <div class="col-md-1">
+                        {% if product.id %}
+                            <a href="{% url 'main:increase_amount' product.id %}">
+                                <button class="btn btn-light">+</button>
+                            </a>
+                            <a href="{% url 'main:decrease_amount' product.id %}">
+                                <button class="btn btn-danger">-</button>
+                            </a>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-1">
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmationModal" data-product-id="{{ product.id }}">Delete by AJAX</button>
+                        
+                        <a href="{% url 'main:delete_product' product.id %}">
+                            <button class="btn btn-light">Delete</button>
+                        </a>
+                    </div>
+                    <div class="col-md-1">
+                        <a href="{% url 'main:edit_product' product.pk %}">
+                            <button class="btn btn-warning">Edit</button>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button>
+    </div>
+
+    <script>
+        async function getProducts() {
+            return fetch("{% url 'main:get_product_json' %}").then((res) => res.json());
+        }
+
+        async function refreshProducts() {
+            document.getElementByClass("card").innerHTML = ""
+            const products = await getProducts();
+            let htmlString = ``;
+
+            products.forEach((item) => {
+                htmlString += `
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">${item.fields.name}</h5>
+                        <p class="card-text">${item.fields.description}</p>
+                        <p class="card-text">Price: ${item.fields.price}</p>
+                        <p class="card-text">Amount: ${item.fields.amount}</p>
+                        <p class="card-text">Stock: ${item.fields.stok}</p>
+                        <p class="card-text">Date Added: ${item.fields.date_added}</p>
+                    </div>
+                </div>`;
+            });
+
+            document.getElementByClass("card").innerHTML = htmlString;
+        }
+
+        function addProduct() {
+            fetch("{% url 'main:add_product_ajax' %}", {
+                method: "POST",
+                body: new FormData(document.querySelector('#form'))
+            }).then(refreshProducts)
+
+            document.getElementById("form").reset()
+            return false
+        }
+        document.getElementById("button_add").onclick = addProduct
+        
+        refreshProducts();
+
+        function deleteProduct(productId) {
+            $('#confirmationModal').modal('show');
+
+            document.getElementById("confirmDelete").addEventListener("click", function () {
+                fetch("{% url 'main:delete_product_ajax' 0 %}".replace('0', productId), {
+                    method: "POST",
+                    headers: {
+                        "X-CSRFToken": getCookie("csrftoken")
+                    }
+                })
+                    .then((response) => {
+                        if (response.ok) {
+                            refreshProducts();
+                        } else {
+                            alert("Delete failed. Please try again.");
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error while deleting product:", error);
+                        alert("Delete failed. Please try again.");
+                    });
+            });
+        }
+
+        function getCookie(name) {
+            var value = "; " + document.cookie;
+            var parts = value.split("; " + name + "=");
+            if (parts.length === 2) return parts.pop().split(";").shift();
+        }
+    </script>
 {% endblock content %}
