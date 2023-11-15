@@ -45,7 +45,7 @@
         }
     </style>
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<!-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
     <a class="navbar-brand" href="#">
         {{ name }}
@@ -61,6 +61,42 @@
         <a class="nav-link" href="{% url 'main:logout' %}">Logout</a>
         </div>
     </div>
+    </div>
+</nav> -->
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary p-2">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="https://static.vecteezy.com/system/resources/previews/025/919/184/non_2x/panda-mascot-logo-clip-art-illustration-vector.jpg" alt="Bootstrap" width="100" height="100"> LibPanda
+        </a>
+
+                <div class="nav justify-content-center">
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search Book">
+                        <button class="btn btn-outline-success" type="submit">
+                            <img src="https://cdn.icon-icons.com/icons2/2469/PNG/512/magnifier_magnifying_glass_icon_149435.png" alt="Bootstrap" width="25" height="25">
+                        </button>
+                    </form>
+
+                    <a class="nav-link active" aria-current="page" href="#">Request</a>
+
+                    <a class="nav-link active" href="#">Wishlist</a>
+
+                    <a class="nav-link active" href="#">
+                        <img src="https://media.istockphoto.com/id/1206806317/vector/shopping-cart-icon-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=1RRQJs5NDhcB67necQn1WCpJX2YMfWZ4rYi1DFKlkNA=" alt="Bootstrap" width="30" height="30">
+                    </a>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Hi, {{ name }}
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Profile</a></li>
+                          <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                      </li>
+                </div>
+        </div>
     </div>
 </nav>
 
